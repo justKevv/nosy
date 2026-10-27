@@ -4,13 +4,13 @@ func sampleTables() []table {
 	return []table{
 		{
 			name:    "users",
-			columns: []column{{"id", "bigint"}, {"name", "text"}, {"email", "text"}, {"created_at", "timestamptz"}},
+			columns: []column{{"id", "bigint"}, {"name", "text"}, {"email", "text"}, {"phone", "text"}, {"country", "char(2)"}, {"plan", "text"}, {"status", "text"}, {"created_at", "timestamptz"}, {"last_login_at", "timestamptz"}},
 			rows: [][]string{
-				{"1", "Ada Lovelace", "ada@example.com", "2026-01-04"},
-				{"2", "Alan Turing", "alan@example.com", "2026-01-09"},
-				{"3", "Grace Hopper", "grace@example.com", "2026-02-17"},
-				{"4", "Linus Torvalds", "linus@example.com", "2026-03-02"},
-				{"5", "Margaret Hamilton", "margaret@example.com", "2026-03-21"},
+				{"1", "Ada Lovelace", "ada@example.com", "+44 20 7946 0001", "GB", "pro", "active", "2026-01-04", "2026-10-26"},
+				{"2", "Alan Turing", "alan@example.com", "+44 20 7946 0002", "GB", "team", "active", "2026-01-09", "2026-10-25"},
+				{"3", "Grace Hopper", "grace@example.com", "+1 212 555 0103", "US", "pro", "invited", "2026-02-17", "2026-09-30"},
+				{"4", "Linus Torvalds", "linus@example.com", "+1 503 555 0104", "US", "free", "active", "2026-03-02", "2026-10-27"},
+				{"5", "Margaret Hamilton", "margaret@example.com", "+1 617 555 0105", "US", "team", "suspended", "2026-03-21", "2026-07-14"},
 			},
 		},
 		{
