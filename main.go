@@ -10,6 +10,9 @@ import (
 func main() {
 	a := newApp()
 	mygo.App.WhenReady(func() {
+		if err := registerFonts(); err != nil {
+			log.Fatal(err)
+		}
 		mygo.NewWindow(mygo.WindowOptions{
 			Title:          "nosy",
 			Width:          1400,

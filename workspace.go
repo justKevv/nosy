@@ -87,12 +87,12 @@ func (a *app) editor(c *ui.Context) {
 		ui.Row(c).Height(150).Padding(10, 0).Children(func() {
 			ui.Column(c).Width(44).AlignItems(ui.End).Padding(0, 10, 0, 0).Children(func() {
 				for i := range sqlLines {
-					ui.Text(c, fmt.Sprint(i+1)).Font("Menlo").FontSize(12).TextColor(t.TextMuted).SingleLine()
+					ui.Text(c, fmt.Sprint(i+1)).Font(monoFamily).FontSize(12).TextColor(t.TextMuted).SingleLine()
 				}
 			})
 			ui.Column(c).Grow(1).Children(func() {
 				for _, line := range sqlLines {
-					ui.Text(c, line).Font("Menlo").FontSize(12).SingleLine()
+					ui.Text(c, line).Font(monoFamily).FontSize(12).SingleLine()
 				}
 			})
 		})
@@ -156,7 +156,7 @@ func (a *app) rowGrid(c *ui.Context) {
 				for j, w := range widths {
 					gridCell(c, w, gridAlign(cur, j), func() {
 						if j > 0 {
-							ui.Text(c, cur.columns[j-1].name).Font("Menlo").FontSize(11).FontWeight(600).TextColor(t.TextMuted).SingleLine()
+							ui.Text(c, cur.columns[j-1].name).Font(monoFamily).FontSize(11).FontWeight(600).TextColor(t.TextMuted).SingleLine()
 						}
 					})
 				}
@@ -178,7 +178,7 @@ func gridRow(r ui.ListRow, cur table, widths []float32) {
 	}
 	ui.Row(c).Height(gridRowHeight).AlignItems(ui.Stretch).Children(func() {
 		gridCell(c, widths[0], ui.Center, func() {
-			ui.Text(c, strconv.Itoa(r.Index+1)).Font("Menlo").FontSize(10).TextColor(muted).SingleLine()
+			ui.Text(c, strconv.Itoa(r.Index+1)).Font(monoFamily).FontSize(10).TextColor(muted).SingleLine()
 		})
 		for j := 1; j < len(widths); j++ {
 			gridCell(c, widths[j], gridAlign(cur, j), func() {
@@ -187,7 +187,7 @@ func gridRow(r ui.ListRow, cur table, widths []float32) {
 					statusPill(c, value, muted)
 					return
 				}
-				ui.Text(c, value).Font("Menlo").FontSize(11).SingleLine()
+				ui.Text(c, value).Font(monoFamily).FontSize(11).SingleLine()
 			})
 		}
 	})
@@ -242,7 +242,7 @@ func statusPill(c *ui.Context, value string, muted ui.Color) {
 	t := c.Theme()
 	ui.Row(c).Padding(2, 7).Gap(5).Radius(4).Border(1, t.Border).AlignItems(ui.Center).Children(func() {
 		ui.Row(c).Size(5, 5).Radius(3).Background(muted)
-		ui.Text(c, strings.ToUpper(value)).Font("Menlo").FontSize(10).FontWeight(600).TextColor(muted).SingleLine()
+		ui.Text(c, strings.ToUpper(value)).Font(monoFamily).FontSize(10).FontWeight(600).TextColor(muted).SingleLine()
 	})
 }
 

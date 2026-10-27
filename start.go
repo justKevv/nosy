@@ -17,7 +17,7 @@ func (a *app) startStatusBar(c *ui.Context) {
 		shortcut(c, "⌘K", "command palette")
 		shortcut(c, "⌘N", "new connection")
 		ui.Spacer(c)
-		ui.Textf(c, "%d connections", len(a.connections)).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+		ui.Textf(c, "%d connections", len(a.connections)).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 		ui.Row(c).Width(1).Height(12).Background(t.Border)
 		ui.Row(c).Padding(2).Gap(2).Radius(5).Border(1, t.Border).AlignItems(ui.Center).Children(func() {
 			ui.Row(c).Padding(3).Radius(4).Children(func() {
@@ -27,7 +27,7 @@ func (a *app) startStatusBar(c *ui.Context) {
 				ui.Icon(c, moonIcon).Size(11, 11).TextColor(t.Text)
 			})
 		})
-		ui.Text(c, appVersion).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+		ui.Text(c, appVersion).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 	})
 }
 
@@ -36,9 +36,9 @@ func shortcut(c *ui.Context, key, label string) {
 	t := c.Theme()
 	ui.Row(c).Gap(5).AlignItems(ui.Center).Children(func() {
 		ui.Row(c).Padding(2, 6).Radius(3).Border(1, t.Border).AlignItems(ui.Center).Children(func() {
-			ui.Text(c, key).Font("Menlo").FontSize(9).TextColor(t.TextMuted).SingleLine()
+			ui.Text(c, key).Font(monoFamily).FontSize(9).TextColor(t.TextMuted).SingleLine()
 		})
-		ui.Text(c, label).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+		ui.Text(c, label).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 	})
 }
 
@@ -124,7 +124,7 @@ func verticalRule(c *ui.Context) {
 
 // capsLabel draws the small capital heading of a section of the screen.
 func capsLabel(c *ui.Context, text string) {
-	ui.Text(c, text).Font("Menlo").FontSize(10).FontWeight(600).LetterSpacing(0.8).TextColor(c.Theme().TextMuted).SingleLine()
+	ui.Text(c, text).Font(monoFamily).FontSize(10).FontWeight(600).LetterSpacing(0.8).TextColor(c.Theme().TextMuted).SingleLine()
 }
 
 // statusDot draws the dot of a connection's status: ok, err, or anything
@@ -146,7 +146,7 @@ func inputField(c *ui.Context, icon *ui.SVG, value *string, placeholder string) 
 	t := c.Theme()
 	ui.Row(c).Height(40).Padding(0, 11).Gap(8).Radius(7).Border(1, t.Border).Background(t.Background).AlignItems(ui.Center).Children(func() {
 		ui.Icon(c, icon).Size(14, 14).TextColor(t.TextMuted)
-		ui.TextInput(c, value).Placeholder(placeholder).Font("Menlo").Border(0, ui.Transparent).Background(ui.Transparent).Grow(1)
+		ui.TextInput(c, value).Placeholder(placeholder).Font(monoFamily).Border(0, ui.Transparent).Background(ui.Transparent).Grow(1)
 	})
 }
 

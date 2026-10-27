@@ -14,10 +14,10 @@ func (a *app) connectionsSidebar(c *ui.Context) {
 		ui.Column(c).Padding(12).Gap(8).Children(func() {
 			ui.Row(c).Padding(6, 10).Gap(8).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
 				ui.Icon(c, folderIcon).Size(13, 13).TextColor(t.TextMuted)
-				ui.Text(c, "scope:").Font("Menlo").FontSize(12).TextColor(t.TextMuted)
-				ui.Text(c, "all").Font("Menlo").FontSize(12).FontWeight(600).SingleLine()
+				ui.Text(c, "scope:").Font(monoFamily).FontSize(12).TextColor(t.TextMuted)
+				ui.Text(c, "all").Font(monoFamily).FontSize(12).FontWeight(600).SingleLine()
 				ui.Spacer(c)
-				ui.Textf(c, "%d saved", len(a.connections)).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+				ui.Textf(c, "%d saved", len(a.connections)).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 				ui.Icon(c, chevronsIcon).Size(12, 12).TextColor(t.TextMuted)
 			})
 			inputField(c, filterIcon, &a.connFilter, "Filter connections...")
@@ -45,7 +45,7 @@ func (a *app) connectionsSidebar(c *ui.Context) {
 				ui.Badge(c, "unsaved")
 				ui.Spacer(c)
 				ui.ButtonBase(c).Padding(2, 4).Radius(4).OnClick(func() { a.recent = nil }).Children(func() {
-					ui.Text(c, "Clear").Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+					ui.Text(c, "Clear").Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 				})
 			})
 			for _, conn := range a.recent {
@@ -71,16 +71,16 @@ func (a *app) savedRow(c *ui.Context, i int, conn connection) {
 			ui.Icon(c, a.driverOf(conn).icon).Size(14, 14).TextColor(t.TextMuted)
 		})
 		ui.Column(c).Grow(1).Gap(2).Children(func() {
-			ui.Text(c, conn.name).Font("Menlo").FontSize(12).SingleLine()
-			ui.Text(c, subtitle(conn)).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+			ui.Text(c, conn.name).Font(monoFamily).FontSize(12).SingleLine()
+			ui.Text(c, subtitle(conn)).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 		})
 		ui.Column(c).AlignItems(ui.End).Gap(2).Children(func() {
 			metric, color := conn.latency, t.TextMuted
 			if conn.status == "err" {
 				metric, color = "err", t.Danger
 			}
-			ui.Text(c, metric).Font("Menlo").FontSize(10).TextColor(color).SingleLine()
-			ui.Text(c, conn.ago).Font("Menlo").FontSize(9).TextColor(t.TextMuted).SingleLine()
+			ui.Text(c, metric).Font(monoFamily).FontSize(10).TextColor(color).SingleLine()
+			ui.Text(c, conn.ago).Font(monoFamily).FontSize(9).TextColor(t.TextMuted).SingleLine()
 		})
 	})
 }
@@ -90,8 +90,8 @@ func (a *app) recentRow(c *ui.Context, conn connection) {
 	t := c.Theme()
 	ui.ButtonBase(c).Padding(7, 8).Gap(8).Radius(5).AlignItems(ui.Center).OnClick(func() { a.pickRecent(conn) }).Children(func() {
 		statusDot(c, conn.status)
-		ui.Text(c, conn.name).Font("Menlo").FontSize(12).Grow(1).SingleLine()
-		ui.Text(c, conn.ago).Font("Menlo").FontSize(9).TextColor(t.TextMuted).SingleLine()
+		ui.Text(c, conn.name).Font(monoFamily).FontSize(12).Grow(1).SingleLine()
+		ui.Text(c, conn.ago).Font(monoFamily).FontSize(9).TextColor(t.TextMuted).SingleLine()
 	})
 }
 

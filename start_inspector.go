@@ -17,7 +17,7 @@ func (a *app) connectionPreview(c *ui.Context) {
 			capsLabel(c, "CONNECTION PREVIEW")
 			ui.Spacer(c)
 			ui.Row(c).Padding(1, 6).Radius(4).Border(1, t.Border).AlignItems(ui.Center).Children(func() {
-				ui.Text(c, "read-only").Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+				ui.Text(c, "read-only").Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 			})
 		})
 		ui.Divider(c)
@@ -29,11 +29,11 @@ func (a *app) connectionPreview(c *ui.Context) {
 				})
 				ui.Column(c).Grow(1).Gap(2).Children(func() {
 					ui.Text(c, d.version).FontSize(13).FontWeight(600).SingleLine()
-					ui.Text(c, d.wire).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+					ui.Text(c, d.wire).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 				})
 				ui.Row(c).Padding(2, 7).Gap(4).Radius(4).Border(1, t.Border).AlignItems(ui.Center).Children(func() {
 					statusDot(c, "")
-					ui.Text(c, "idle").Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+					ui.Text(c, "idle").Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 				})
 			})
 		})
@@ -55,7 +55,7 @@ func (a *app) connectionPreview(c *ui.Context) {
 			capsLabel(c, "RESOLVED URI")
 			ui.Column(c).Padding(8, 9).Gap(3).Radius(6).Border(1, t.Border).Background(t.Background).Children(func() {
 				for _, line := range a.uriLines() {
-					ui.Text(c, line).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+					ui.Text(c, line).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 				}
 			})
 		})
@@ -72,8 +72,8 @@ func (a *app) connectionPreview(c *ui.Context) {
 func fieldRow(c *ui.Context, name, value string) {
 	t := c.Theme()
 	ui.Row(c).AlignItems(ui.Center).Justify(ui.SpaceBetween).Gap(8).Children(func() {
-		ui.Text(c, name).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
-		ui.Text(c, value).Font("Menlo").FontSize(10).SingleLine()
+		ui.Text(c, name).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
+		ui.Text(c, value).Font(monoFamily).FontSize(10).SingleLine()
 	})
 }
 

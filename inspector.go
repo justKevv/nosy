@@ -22,7 +22,7 @@ func (a *app) inspector(c *ui.Context) {
 	ui.Column(c).Width(inspectorWidth).Border(1, t.Border).Children(func() {
 		ui.Row(c).Height(44).Padding(0, 14).Gap(8).AlignItems(ui.Center).Children(func() {
 			ui.Icon(c, sidebarIcon).Size(14, 14).TextColor(t.TextMuted)
-			ui.Text(c, "ROW INSPECTOR").Font("Menlo").FontSize(11).FontWeight(600).LetterSpacing(0.6).TextColor(t.TextMuted).SingleLine()
+			ui.Text(c, "ROW INSPECTOR").Font(monoFamily).FontSize(11).FontWeight(600).LetterSpacing(0.6).TextColor(t.TextMuted).SingleLine()
 			ui.Spacer(c)
 			if selected {
 				rowBadge(c, fmt.Sprintf("Row #%d", a.row+1))
@@ -37,9 +37,9 @@ func (a *app) inspector(c *ui.Context) {
 			ui.Column(c).Grow(1).Children(func() {
 				ui.Column(c).Padding(12, 14).Gap(6).Children(func() {
 					ui.Row(c).AlignItems(ui.Center).Children(func() {
-						ui.Text(c, "COLUMNS & TYPES").Font("Menlo").FontSize(10).FontWeight(600).LetterSpacing(0.6).TextColor(t.TextMuted).SingleLine()
+						ui.Text(c, "COLUMNS & TYPES").Font(monoFamily).FontSize(10).FontWeight(600).LetterSpacing(0.6).TextColor(t.TextMuted).SingleLine()
 						ui.Spacer(c)
-						ui.Text(c, fmt.Sprint(len(cur.columns))).Font("Menlo").FontSize(9).TextColor(t.TextMuted).SingleLine()
+						ui.Text(c, fmt.Sprint(len(cur.columns))).Font(monoFamily).FontSize(9).TextColor(t.TextMuted).SingleLine()
 					})
 					for i, col := range cur.columns {
 						if i > 0 {
@@ -47,10 +47,10 @@ func (a *app) inspector(c *ui.Context) {
 						}
 						ui.Row(c).Padding(5, 0).Gap(8).AlignItems(ui.Center).Justify(ui.SpaceBetween).Children(func() {
 							ui.Column(c).Gap(1).Children(func() {
-								ui.Text(c, col.name).Font("Menlo").FontSize(10).TextColor(t.Text).SingleLine()
-								ui.Text(c, col.typ).Font("Menlo").FontSize(9).TextColor(t.TextMuted).SingleLine()
+								ui.Text(c, col.name).Font(monoFamily).FontSize(10).TextColor(t.Text).SingleLine()
+								ui.Text(c, col.typ).Font(monoFamily).FontSize(9).TextColor(t.TextMuted).SingleLine()
 							})
-							ui.Text(c, cur.rows[a.row][i]).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+							ui.Text(c, cur.rows[a.row][i]).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 						})
 					}
 				})
@@ -58,13 +58,13 @@ func (a *app) inspector(c *ui.Context) {
 				ui.Column(c).Grow(1).Padding(12, 14).Gap(6).Children(func() {
 					ui.Row(c).AlignItems(ui.Center).Gap(6).Children(func() {
 						ui.Icon(c, bracesIcon).Size(13, 13).TextColor(t.TextMuted)
-						ui.Text(c, "RECORD JSON").Font("Menlo").FontSize(10).FontWeight(600).LetterSpacing(0.6).TextColor(t.TextMuted).SingleLine()
+						ui.Text(c, "RECORD JSON").Font(monoFamily).FontSize(10).FontWeight(600).LetterSpacing(0.6).TextColor(t.TextMuted).SingleLine()
 						ui.Spacer(c)
-						ui.Text(c, "read-only").Font("Menlo").FontSize(9).TextColor(t.TextMuted).SingleLine()
+						ui.Text(c, "read-only").Font(monoFamily).FontSize(9).TextColor(t.TextMuted).SingleLine()
 					})
 					ui.Column(c).Grow(1).Padding(10).Gap(3).Radius(6).Border(1, t.Border).Background(t.Surface).Children(func() {
 						for _, line := range recordLines(cur, a.row) {
-							ui.Text(c, line).Font("Menlo").FontSize(10).SingleLine()
+							ui.Text(c, line).Font(monoFamily).FontSize(11).SingleLine()
 						}
 					})
 				})
@@ -84,7 +84,7 @@ func (a *app) inspector(c *ui.Context) {
 func rowBadge(c *ui.Context, text string) {
 	t := c.Theme()
 	ui.Row(c).Padding(2, 7).Radius(4).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
-		ui.Text(c, text).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+		ui.Text(c, text).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 	})
 }
 

@@ -84,12 +84,12 @@ func (a *app) connectForm(c *ui.Context) {
 			capsLabel(c, "CONNECTION STRING")
 			ui.Row(c).Height(40).Padding(0, 11).Gap(8).Radius(7).Border(1, t.Border).Background(t.Background).AlignItems(ui.Center).Children(func() {
 				ui.Icon(c, linkIcon).Size(12, 12).TextColor(t.TextMuted)
-				ui.Text(c, strings.Join(a.uriLines(), "")).Font("Menlo").FontSize(11).TextColor(t.TextMuted).SingleLine()
+				ui.Text(c, strings.Join(a.uriLines(), "")).Font(monoFamily).FontSize(11).TextColor(t.TextMuted).SingleLine()
 			})
 		})
 		ui.Row(c).Gap(10).AlignItems(ui.Center).Children(func() {
 			ui.Checkbox(c, &a.ssl, "Require SSL")
-			ui.Text(c, "timeout 10s").Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+			ui.Text(c, "timeout 10s").Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 			ui.Spacer(c)
 			testButton(c)
 			connectButton(c, a.connect)
@@ -105,7 +105,7 @@ func (a *app) quickReconnect(c *ui.Context) {
 			ui.Icon(c, historyIcon).Size(13, 13).TextColor(t.TextMuted)
 			capsLabel(c, "QUICK RECONNECT")
 			ui.Spacer(c)
-			ui.Text(c, "last used · all").Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+			ui.Text(c, "last used · all").Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 			ui.Text(c, "View all").FontSize(11).TextColor(t.Accent).SingleLine()
 		})
 		for i, conn := range a.connections[:min(quickReconnectCount, len(a.connections))] {
@@ -121,11 +121,11 @@ func (a *app) quickRow(c *ui.Context, i int, conn connection) {
 	t := c.Theme()
 	ui.ButtonBase(c).Padding(9, 14).Gap(10).AlignItems(ui.Center).OnClick(func() { a.pickSaved(i) }).Children(func() {
 		statusDot(c, conn.status)
-		ui.Text(c, conn.name).Font("Menlo").FontSize(11).SingleLine()
-		ui.Text(c, conn.driver).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+		ui.Text(c, conn.name).Font(monoFamily).FontSize(11).SingleLine()
+		ui.Text(c, conn.driver).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 		ui.Spacer(c)
-		ui.Text(c, conn.database).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
-		ui.Text(c, conn.latency).Font("Menlo").FontSize(10).TextColor(t.TextMuted).SingleLine()
+		ui.Text(c, conn.database).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
+		ui.Text(c, conn.latency).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 		ui.Icon(c, arrowUpRightIcon).Size(10, 10).TextColor(t.TextMuted)
 	})
 }
