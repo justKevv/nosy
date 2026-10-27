@@ -10,6 +10,7 @@ import (
 // would.
 func TestView(t *testing.T) {
 	a := newApp()
+	a.screen = screenWorkspace
 	tt := ui.NewTester(a.view, 960, 600)
 	if !tt.HasText("Ada Lovelace") {
 		t.Fatalf("users rows missing, texts %q", tt.Texts())
@@ -22,8 +23,31 @@ func TestView(t *testing.T) {
 	}
 }
 
+func TestStart(t *testing.T) {
+	a := newApp()
+	tt := ui.NewTester(a.view, 1440, 900)
+	for _, text := range []string{"New connection", "DRIVER", "Require SSL", "QUICK RECONNECT", "PostgreSQL 16.4"} {
+		if !tt.HasText(text) {
+			t.Fatalf("%q missing, texts %q", text, tt.Texts())
+		}
+	}
+	if err := tt.Click("staging-use1"); err != nil {
+		t.Fatal(err)
+	}
+	if a.picked != 2 || a.host != "staging-use1.db.internal" || a.drivers[a.driver].name != "MongoDB" {
+		t.Errorf("staging-use1 not loaded: picked %d, host %q, driver %d", a.picked, a.host, a.driver)
+	}
+	if err := tt.Click("Connect"); err != nil {
+		t.Fatal(err)
+	}
+	if a.screen != screenWorkspace {
+		t.Errorf("screen %d after connecting, want the workspace", a.screen)
+	}
+}
+
 func TestWorkspace(t *testing.T) {
 	a := newApp()
+	a.screen = screenWorkspace
 	tt := ui.NewTester(a.view, 1400, 800)
 	for _, text := range []string{"Run Selection ⌘↩", "WHERE", "Showing 1–5 of 5 rows", "ROW INSPECTOR", "Copy JSON", "Select a row to inspect its values."} {
 		if !tt.HasText(text) {
