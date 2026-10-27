@@ -19,7 +19,7 @@ func (a *app) topBar(c *ui.Context) {
 			ui.Row(c).Size(24, 24).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Justify(ui.Center).Children(func() {
 				ui.Icon(c, databaseIcon).Size(14, 14).TextColor(t.Text)
 			})
-			ui.Text(c, "nosy").Bold().TextColor(t.TextMuted)
+			ui.Text(c, "nosy").Bold().FontSize(14).TextColor(t.TextMuted)
 			ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
 				ui.Text(c, "● prod-us-east-1 / telemetry_core").SingleLine()
 				ui.Text(c, "PG 16.4").FontSize(11).TextColor(t.TextMuted)
