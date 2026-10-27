@@ -7,7 +7,8 @@ import "github.com/egoist/mygo/ui"
 const titleBarHeight = 44
 
 // topBar draws the window's top row in the title bar, beside the window
-// controls, which it leaves room for.
+// controls, which it leaves room for. Both screens share its layout; the items
+// are the ones each screen needs.
 func (a *app) topBar(c *ui.Context) {
 	t := c.Theme()
 	bar := c.TitleBar()
@@ -19,15 +20,35 @@ func (a *app) topBar(c *ui.Context) {
 			ui.Row(c).Size(24, 24).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Justify(ui.Center).Children(func() {
 				ui.Icon(c, databaseIcon).Size(14, 14).TextColor(t.Text)
 			})
-			ui.Text(c, "nosy").Bold().FontSize(14).TextColor(t.TextMuted)
-			ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
-				ui.Text(c, "● prod-us-east-1 / telemetry_core").SingleLine()
-				ui.Text(c, "PG 16.4").FontSize(11).TextColor(t.TextMuted)
-				ui.Icon(c, chevronIcon).Size(12, 12).TextColor(t.TextMuted)
-			})
+			if a.screen == screenStart {
+				ui.Text(c, "nosy").Bold().FontSize(14).TextColor(t.TextMuted)
+				ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
+					ui.Text(c, "● not connected / choose a database").SingleLine()
+					ui.Icon(c, chevronIcon).Size(12, 12).TextColor(t.TextMuted)
+				})
+			} else {
+				ui.Text(c, "nosy").Bold().FontSize(14).TextColor(t.TextMuted)
+				ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
+					ui.Text(c, "● prod-us-east-1 / telemetry_core").SingleLine()
+					ui.Text(c, "PG 16.4").FontSize(11).TextColor(t.TextMuted)
+					ui.Icon(c, chevronIcon).Size(12, 12).TextColor(t.TextMuted)
+				})
+			}
 		})
 		ui.Row(c).Grow(1).Gap(10).AlignItems(ui.Center).Children(func() {
 			ui.Spacer(c)
+			if a.screen == screenStart {
+				ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
+					ui.Icon(c, layersIcon).Size(12, 12).TextColor(t.TextMuted)
+					ui.Textf(c, "%d saved", len(a.connections)).FontSize(11).TextColor(t.TextMuted).SingleLine()
+				})
+				ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
+					ui.Icon(c, uploadIcon).Size(12, 12).TextColor(t.TextMuted)
+					ui.Text(c, "Import").SingleLine()
+				})
+				ui.PrimaryButton(c, "+ New Connection").OnClick(a.newConnection)
+				return
+			}
 			ui.TextInput(c, &a.search).Placeholder("Jump to table, index, or SQL…").Width(300)
 			ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
 				ui.Icon(c, activityIcon).Size(12, 12).TextColor(t.TextMuted)
