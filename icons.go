@@ -23,5 +23,7 @@ var (
 	closeIcon    = lineIcon(`<path d="M18 6 6 18M6 6l12 12"/>`)
 	terminalIcon = lineIcon(`<path d="m4 17 6-6-6-6"/><path d="M12 19h8"/>`)
 	diagramIcon  = lineIcon(`<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"/>`)
+	boltIcon     = lineIcon(`<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>`)
+	downloadIcon = lineIcon(`<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>`)
 	functionIcon = lineIcon(`<path d="M9 17c2 0 2.8-1 2.8-2.8V10.8C11.8 9 12.6 8 14.6 8"/><path d="M7 11h8"/>`)
 )
