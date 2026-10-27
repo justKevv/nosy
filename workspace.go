@@ -83,6 +83,7 @@ func metaChip(c *ui.Context, text string) {
 func (a *app) editor(c *ui.Context) {
 	t := c.Theme()
 	ui.Column(c).Children(func() {
+		ui.Divider(c)
 		ui.Row(c).Height(150).Padding(10, 0).Children(func() {
 			ui.Column(c).Width(44).AlignItems(ui.End).Padding(0, 10, 0, 0).Children(func() {
 				for i := range sqlLines {
