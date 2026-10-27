@@ -18,6 +18,7 @@ type app struct {
 	grid     ui.Handle
 
 	screen      screen
+	target      *connection
 	drivers     []driver
 	connections []connection
 	recent      []connection
