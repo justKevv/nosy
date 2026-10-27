@@ -40,6 +40,6 @@ func (a *app) view(c *ui.Context) {
 			a.workspace(c)
 			a.inspector(c)
 		})
-		a.statusBar(c)
+
 	})
 }
