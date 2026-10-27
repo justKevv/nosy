@@ -45,12 +45,12 @@ func sampleViews() []view {
 
 func sampleDrivers() []driver {
 	return []driver{
-		{name: "PostgreSQL", scheme: "postgres", version: "PostgreSQL 16.4", wire: "wire protocol v3", port: "5432", icon: databaseIcon},
-		{name: "MySQL", scheme: "mysql", version: "MySQL 8.4", wire: "wire protocol 10", port: "3306", icon: databaseIcon},
-		{name: "SQLite", scheme: "sqlite", version: "SQLite 3.46", wire: "file database", icon: fileIcon},
-		{name: "MongoDB", scheme: "mongodb", version: "MongoDB 7.0", wire: "wire protocol 2013", port: "27017", icon: leafIcon},
-		{name: "Redis", scheme: "redis", version: "Redis 7.2", wire: "RESP3", port: "6379", icon: boltIcon},
-		{name: "SQL Server", scheme: "sqlserver", version: "SQL Server 2022", wire: "TDS 7.4", port: "1433", icon: serverIcon},
+		{name: "PostgreSQL", scheme: "postgres", version: "PostgreSQL 16.4", tag: "PG 16.4", wire: "wire protocol v3", port: "5432", icon: databaseIcon},
+		{name: "MySQL", scheme: "mysql", version: "MySQL 8.4", tag: "MySQL 8.4", wire: "wire protocol 10", port: "3306", icon: databaseIcon},
+		{name: "SQLite", scheme: "sqlite", version: "SQLite 3.46", tag: "SQLite 3.46", wire: "file database", icon: fileIcon},
+		{name: "MongoDB", scheme: "mongodb", version: "MongoDB 7.0", tag: "Mongo 7.0", wire: "wire protocol 2013", port: "27017", icon: leafIcon},
+		{name: "Redis", scheme: "redis", version: "Redis 7.2", tag: "Redis 7.2", wire: "RESP3", port: "6379", icon: boltIcon},
+		{name: "SQL Server", scheme: "sqlserver", version: "SQL Server 2022", tag: "MSSQL 2022", wire: "TDS 7.4", port: "1433", icon: serverIcon},
 	}
 }
 
