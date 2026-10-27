@@ -21,7 +21,7 @@ func (a *app) topBar(c *ui.Context) {
 				ui.Icon(c, databaseIcon).Size(14, 14).TextColor(t.Text)
 			})
 			if a.screen == screenStart {
-				ui.Text(c, "NOSY").Bold().FontSize(14).TextColor(t.TextMuted)
+				ui.Text(c, "nosy").Bold().FontSize(14).TextColor(t.TextMuted)
 			} else {
 				ui.Text(c, "nosy").Bold().FontSize(14).TextColor(t.TextMuted)
 			}
@@ -42,7 +42,7 @@ func (a *app) topBar(c *ui.Context) {
 				return
 			}
 			ui.TextInput(c, &a.search).Placeholder("Jump to table, index, or SQL…").Width(300)
-			ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
+			ui.Row(c).Padding(4, 9).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
 				ui.Icon(c, activityIcon).Size(12, 12).TextColor(t.TextMuted)
 				ui.Text(c, "connected · 1.8ms").TextColor(t.TextMuted).SingleLine()
 			})
