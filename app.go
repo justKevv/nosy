@@ -15,6 +15,7 @@ type app struct {
 	filter   string
 	rows     ui.ListState
 	row      int
+	grid     ui.Handle
 }
 
 func newApp() *app {
