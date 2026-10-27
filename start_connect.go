@@ -63,21 +63,21 @@ func (a *app) connectForm(c *ui.Context) {
 		ui.Row(c).Gap(12).Children(func() {
 			ui.Column(c).Grow(1).Gap(6).Children(func() {
 				capsLabel(c, "HOST")
-				inputField(c, globeIcon, &a.host, "hostname or IP")
+				inputField(c, globeIcon, &a.host, defaultHost)
 			})
 			ui.Column(c).Width(92).Gap(6).Children(func() {
 				capsLabel(c, "PORT")
-				inputField(c, hashIcon, &a.port, "")
+				inputField(c, hashIcon, &a.port, a.drivers[a.driver].port)
 			})
 		})
 		ui.Row(c).Gap(12).Children(func() {
 			ui.Column(c).Grow(1).Gap(6).Children(func() {
 				capsLabel(c, "DATABASE")
-				inputField(c, databaseIcon, &a.database, "")
+				inputField(c, databaseIcon, &a.database, "database")
 			})
 			ui.Column(c).Grow(1).Gap(6).Children(func() {
 				capsLabel(c, "USER")
-				inputField(c, userIcon, &a.user, "")
+				inputField(c, userIcon, &a.user, "user")
 			})
 		})
 		ui.Column(c).Gap(6).Children(func() {
