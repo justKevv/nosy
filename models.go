@@ -1,5 +1,31 @@
 package main
 
+import "github.com/egoist/mygo/ui"
+
+// screen is the screen the window shows: the start screen, where connections
+// are chosen, or the workspace of the connected database.
+type screen uint8
+
+const (
+	screenStart screen = iota
+	screenWorkspace
+)
+
+// driver is a database engine a connection can use: its name, the scheme of
+// its connection strings, its version and wire protocol, its default port and
+// its icon. A driver without a port, as SQLite, has an empty one.
+type driver struct {
+	name, scheme, version, wire, port string
+	icon                              *ui.SVG
+}
+
+// connection is a saved or recently used connection. status is ok, idle or
+// err; latency and ago tell how fast it answered and how long ago it was used.
+type connection struct {
+	name, driver, host, port, database, user string
+	status, latency, ago                     string
+}
+
 // table is one table of the database the window shows. The rows are sample
 // data until a connection is implemented.
 type table struct {
