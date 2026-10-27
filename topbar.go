@@ -21,19 +21,11 @@ func (a *app) topBar(c *ui.Context) {
 				ui.Icon(c, databaseIcon).Size(14, 14).TextColor(t.Text)
 			})
 			if a.screen == screenStart {
-				ui.Text(c, "nosy").Bold().FontSize(14).TextColor(t.TextMuted)
-				ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
-					ui.Text(c, "● not connected / choose a database").SingleLine()
-					ui.Icon(c, chevronIcon).Size(12, 12).TextColor(t.TextMuted)
-				})
+				ui.Text(c, "NOSY").Bold().FontSize(14).TextColor(t.TextMuted)
 			} else {
 				ui.Text(c, "nosy").Bold().FontSize(14).TextColor(t.TextMuted)
-				ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
-					ui.Text(c, "● prod-us-east-1 / telemetry_core").SingleLine()
-					ui.Text(c, "PG 16.4").FontSize(11).TextColor(t.TextMuted)
-					ui.Icon(c, chevronIcon).Size(12, 12).TextColor(t.TextMuted)
-				})
 			}
+			a.contextBadge(c)
 		})
 		ui.Row(c).Grow(1).Gap(10).AlignItems(ui.Center).Children(func() {
 			ui.Spacer(c)
