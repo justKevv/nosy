@@ -36,7 +36,7 @@ func newApp() *app {
 	a := &app{tables: sampleTables(), views: sampleViews(), tabs: sampleTabs(), selected: "users", row: -1,
 		screen: screenStart, drivers: sampleDrivers(), connections: sampleConnections(), recent: sampleRecent(), ssl: true}
 	a.rows.Selected = &a.row
-	a.pickSaved(0)
+	a.newConnection()
 	return a
 }
 
