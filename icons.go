@@ -26,4 +26,6 @@ var (
 	boltIcon     = lineIcon(`<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>`)
 	downloadIcon = lineIcon(`<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>`)
 	functionIcon = lineIcon(`<path d="M9 17c2 0 2.8-1 2.8-2.8V10.8C11.8 9 12.6 8 14.6 8"/><path d="M7 11h8"/>`)
+	sidebarIcon  = lineIcon(`<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/>`)
+	bracesIcon   = lineIcon(`<path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/><path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>`)
 )
