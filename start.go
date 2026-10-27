@@ -42,10 +42,10 @@ func shortcut(c *ui.Context, key, label string) {
 	})
 }
 
-// pickDriver chooses driver i for the form, with its default port.
+// pickDriver chooses driver i for the form. Its port is left to the hint.
 func (a *app) pickDriver(i int) {
 	a.driver = i
-	a.port = a.drivers[i].port
+	a.port = ""
 }
 
 // pickSaved loads saved connection i into the form.
@@ -66,11 +66,12 @@ func (a *app) load(conn connection) {
 	a.host, a.port, a.database, a.user = conn.host, conn.port, conn.database, conn.user
 }
 
-// newConnection clears the form for a connection that is not saved yet.
+// newConnection clears the form for a connection that is not saved yet. Its
+// fields show hints: the default host and the port of the driver.
 func (a *app) newConnection() {
 	a.picked = -1
 	a.driver = 0
-	a.host, a.port, a.database, a.user = "", a.drivers[0].port, "", ""
+	a.host, a.port, a.database, a.user = "", "", "", ""
 	a.ssl = true
 }
 
@@ -84,9 +85,30 @@ func (a *app) connect() {
 	if name == "" {
 		name = "new"
 	}
-	a.target = &connection{name: name, driver: a.drivers[a.driver].name, host: a.host, port: a.port,
+	a.target = &connection{name: name, driver: a.drivers[a.driver].name, host: a.effectiveHost(), port: a.effectivePort(),
 		database: a.database, user: a.user, status: "ok"}
 	a.screen = screenWorkspace
+}
+
+// defaultHost is the host a connection points at when its field is empty.
+const defaultHost = "localhost"
+
+// effectiveHost returns the host the form connects to: the one typed, or the
+// default host.
+func (a *app) effectiveHost() string {
+	if a.host != "" {
+		return a.host
+	}
+	return defaultHost
+}
+
+// effectivePort returns the port the form connects to: the one typed, or the
+// default port of the driver.
+func (a *app) effectivePort() string {
+	if a.port != "" {
+		return a.port
+	}
+	return a.drivers[a.driver].port
 }
 
 // driverOf returns the driver of conn.
@@ -101,9 +123,9 @@ func (a *app) uriLines() []string {
 	if a.user != "" {
 		scheme += a.user + "@"
 	}
-	host := a.host
-	if a.port != "" {
-		host += ":" + a.port
+	host := a.effectiveHost()
+	if port := a.effectivePort(); port != "" {
+		host += ":" + port
 	}
 	lines := []string{scheme, host}
 	if a.database != "" {
