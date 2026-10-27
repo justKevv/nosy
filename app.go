@@ -33,24 +33,13 @@ func (a *app) current() table {
 }
 
 func (a *app) view(c *ui.Context) {
-	t := c.Theme()
-	cur := a.current()
 	ui.Column(c).Fill().Children(func() {
 		a.topBar(c)
 		ui.Row(c).Grow(1).AlignItems(ui.Stretch).Children(func() {
 			a.sidebar(c)
-			ui.Column(c).Grow(1).Children(func() {
-				a.tabBar(c)
-				columns := make([]ui.TableColumn, len(cur.columns))
-				for i, col := range cur.columns {
-					columns[i] = ui.TableColumn{Title: col.name}
-				}
-				ui.Table(c, &a.rows, columns, len(cur.rows), func(row, col int) {
-					ui.Text(c, cur.rows[row][col]).SingleLine()
-				}).Grow(1)
-				ui.Textf(c, "%d rows · %d columns", len(cur.rows), len(cur.columns)).
-					TextColor(t.TextMuted).Padding(6, 12)
-			})
+			a.workspace(c)
+			a.inspector(c)
 		})
+		a.statusBar(c)
 	})
 }
