@@ -12,7 +12,7 @@ func main() {
 	mygo.App.WhenReady(func() {
 		mygo.NewWindow(mygo.WindowOptions{
 			Title:          "nosy",
-			Width:          960,
+			Width:          1400,
 			Height:         600,
 			MinWidth:       1300,
 			MinHeight:      400,
