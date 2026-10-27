@@ -43,6 +43,9 @@ func TestStart(t *testing.T) {
 	if a.screen != screenWorkspace {
 		t.Errorf("screen %d after connecting, want the workspace", a.screen)
 	}
+	if a.target == nil || a.target.name != "staging-use1" || a.target.database != "sessions" {
+		t.Errorf("target %+v after connecting staging-use1", a.target)
+	}
 }
 
 func TestWorkspace(t *testing.T) {
