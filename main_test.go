@@ -17,7 +17,7 @@ func TestView(t *testing.T) {
 	if err := tt.Click("orders"); err != nil {
 		t.Fatal(err)
 	}
-	if a.selected != "orders" || !tt.HasText("shipped") || tt.HasText("Ada Lovelace") {
+	if a.selected != "orders" || !tt.HasText("SHIPPED") || tt.HasText("Ada Lovelace") {
 		t.Errorf("selected %q after choosing orders, texts %q", a.selected, tt.Texts())
 	}
 }
