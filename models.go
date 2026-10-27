@@ -12,11 +12,12 @@ const (
 )
 
 // driver is a database engine a connection can use: its name, the scheme of
-// its connection strings, its version and wire protocol, its default port and
-// its icon. A driver without a port, as SQLite, has an empty one.
+// its connection strings, its version, the short tag of the version the top
+// bar shows, its wire protocol, its default port and its icon. A driver
+// without a port, as SQLite, has an empty one.
 type driver struct {
-	name, scheme, version, wire, port string
-	icon                              *ui.SVG
+	name, scheme, version, tag, wire, port string
+	icon                                   *ui.SVG
 }
 
 // connection is a saved or recently used connection. status is ok, idle or
