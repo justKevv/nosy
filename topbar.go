@@ -1,0 +1,39 @@
+package main
+
+import "github.com/egoist/mygo/ui"
+
+// titleBarHeight is the height of the top bar. It holds the native window
+// controls, which are centered in it.
+const titleBarHeight = 44
+
+// topBar draws the window's top row in the title bar, beside the window
+// controls, which it leaves room for.
+func (a *app) topBar(c *ui.Context) {
+	t := c.Theme()
+	bar := c.TitleBar()
+	ui.Row(c).Height(titleBarHeight).Border(1, t.Border).Padding(0, bar.Right+15, 0, bar.Left+20).Gap(10).AlignItems(ui.Center).DragWindow().Children(func() {
+		ui.Row(c).Grow(1).Gap(10).AlignItems(ui.Center).Children(func() {
+			ui.Row(c).Height(24).AlignItems(ui.Center).Children(func() {
+				ui.Divider(c)
+			})
+			ui.Row(c).Size(24, 24).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Justify(ui.Center).Children(func() {
+				ui.Icon(c, databaseIcon).Size(14, 14).TextColor(t.Text)
+			})
+			ui.Text(c, "nosy").Bold().TextColor(t.TextMuted)
+			ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
+				ui.Text(c, "● prod-us-east-1 / telemetry_core").SingleLine()
+				ui.Text(c, "PG 16.4").FontSize(11).TextColor(t.TextMuted)
+				ui.Icon(c, chevronIcon).Size(12, 12).TextColor(t.TextMuted)
+			})
+		})
+		ui.Row(c).Grow(1).Gap(10).AlignItems(ui.Center).Children(func() {
+			ui.Spacer(c)
+			ui.TextInput(c, &a.search).Placeholder("Jump to table, index, or SQL…").Width(300)
+			ui.Row(c).Padding(6, 10).Gap(6).Radius(6).Border(1, t.Border).Background(t.Surface).AlignItems(ui.Center).Children(func() {
+				ui.Icon(c, activityIcon).Size(12, 12).TextColor(t.TextMuted)
+				ui.Text(c, "connected · 1.8ms").TextColor(t.TextMuted).SingleLine()
+			})
+			ui.PrimaryButton(c, "+ New Query")
+		})
+	})
+}
