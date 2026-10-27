@@ -74,8 +74,18 @@ func (a *app) newConnection() {
 	a.ssl = true
 }
 
-// connect opens the workspace of the database the form describes.
+// connect opens the workspace of the database the form describes, which
+// becomes the target the top bar shows.
 func (a *app) connect() {
+	name := a.host
+	if a.picked >= 0 {
+		name = a.connections[a.picked].name
+	}
+	if name == "" {
+		name = "new"
+	}
+	a.target = &connection{name: name, driver: a.drivers[a.driver].name, host: a.host, port: a.port,
+		database: a.database, user: a.user, status: "ok"}
 	a.screen = screenWorkspace
 }
 
