@@ -48,6 +48,23 @@ func TestStart(t *testing.T) {
 	}
 }
 
+func TestConnectFieldFocus(t *testing.T) {
+	a := newApp()
+	tt := ui.NewTester(a.view, 1440, 900)
+	label, ok := tt.Find("HOST")
+	if !ok {
+		t.Fatalf("HOST label missing, texts %q", tt.Texts())
+	}
+	tt.ClickAt(label.X+label.W/2, label.Y+label.H+6+20)
+	if active, _ := tt.TextInputActive(); !active {
+		t.Fatal("host field not focused after click")
+	}
+	tt.Type("db")
+	if a.host != "db" {
+		t.Errorf("host %q after typing, want db", a.host)
+	}
+}
+
 func TestWorkspace(t *testing.T) {
 	a := newApp()
 	a.screen = screenWorkspace

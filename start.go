@@ -173,12 +173,17 @@ func statusDot(c *ui.Context, status string) {
 	ui.Row(c).Size(6, 6).Radius(3).Background(color)
 }
 
-// inputField draws a text field with an icon, bound to value.
-func inputField(c *ui.Context, icon *ui.SVG, value *string, placeholder string) {
+// inputField draws a text field with an icon, bound to value. The stroke turns
+// accent while focus is on the field.
+func inputField(c *ui.Context, icon *ui.SVG, value *string, focus *ui.Handle, placeholder string) {
 	t := c.Theme()
-	ui.Row(c).Height(40).Padding(0, 11).Gap(8).Radius(7).Border(1, t.Border).Background(t.Background).AlignItems(ui.Center).Children(func() {
+	stroke := t.Border
+	if focus.Focused(c) {
+		stroke = t.Accent
+	}
+	ui.Row(c).Height(40).Padding(0, 11).Gap(8).Radius(7).Border(1, stroke).Background(t.Background).AlignItems(ui.Center).Children(func() {
 		ui.Icon(c, icon).Size(14, 14).TextColor(t.TextMuted)
-		ui.TextInput(c, value).Placeholder(placeholder).Font(monoFamily).Border(0, ui.Transparent).Background(ui.Transparent).Grow(1)
+		ui.TextInput(c, value).Bind(focus).Placeholder(placeholder).Font(monoFamily).Border(0, ui.Transparent).Background(ui.Transparent).Grow(1)
 	})
 }
 

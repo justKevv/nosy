@@ -20,7 +20,7 @@ func (a *app) connectionsSidebar(c *ui.Context) {
 				ui.Textf(c, "%d saved", len(a.connections)).Font(monoFamily).FontSize(10).TextColor(t.TextMuted).SingleLine()
 				ui.Icon(c, chevronsIcon).Size(12, 12).TextColor(t.TextMuted)
 			})
-			inputField(c, filterIcon, &a.connFilter, "Filter connections...")
+			inputField(c, filterIcon, &a.connFilter, &a.connFilterFocus, "Filter connections...")
 		})
 		ui.Divider(c)
 		ui.Column(c).Padding(12, 8, 8, 8).Gap(2).Children(func() {

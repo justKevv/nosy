@@ -30,6 +30,8 @@ type app struct {
 	database    string
 	user        string
 	ssl         bool
+
+	connFilterFocus, hostFocus, portFocus, databaseFocus, userFocus ui.Handle
 }
 
 func newApp() *app {
